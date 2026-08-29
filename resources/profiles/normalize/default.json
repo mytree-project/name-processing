@@ -1,0 +1,12 @@
+{
+  "schema": "mytree.name-processing-profile.v1",
+  "id": "default",
+  "version": "1.0.0",
+  "operation": "normalize",
+  "config": {
+    "unicode_form": "NFC",
+    "trim": true,
+    "collapse_whitespace": true,
+    "case_fold": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "mytree.name-processing-profile.v999",
+  "id": "unsupported-schema",
+  "version": "1.0.0",
+  "operation": "normalize",
+  "config": {}
+}

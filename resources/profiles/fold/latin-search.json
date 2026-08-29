@@ -1,0 +1,13 @@
+{
+  "schema": "mytree.name-processing-profile.v1",
+  "id": "latin-search",
+  "version": "1.0.0",
+  "operation": "fold",
+  "config": {
+    "icu_id": "Latin-ASCII",
+    "normalize_output": "NFC",
+    "trim": true,
+    "collapse_whitespace": true,
+    "case_fold": true
+  }
+}

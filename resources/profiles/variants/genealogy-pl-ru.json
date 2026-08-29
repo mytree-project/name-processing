@@ -1,0 +1,11 @@
+{
+  "schema": "mytree.name-processing-profile.v1",
+  "id": "genealogy-pl-ru",
+  "version": "1.0.0",
+  "operation": "variants",
+  "config": {
+    "dataset": "given-names.v1",
+    "normalizer_profile": "default",
+    "relation": "language_equivalent_candidate"
+  }
+}
