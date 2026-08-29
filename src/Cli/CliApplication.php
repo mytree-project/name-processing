@@ -91,12 +91,12 @@ final readonly class CliApplication
      */
     private function parse(array $args): array
     {
-        if ($args === [] || in_array($args[0] ?? '', ['help', '--help', '-h'], true)) {
+        if ($args === [] || in_array($args[0], ['help', '--help', '-h'], true)) {
             return ['help' => true, 'operation' => '', 'options' => [], 'value' => ''];
         }
 
         $operation = array_shift($args);
-        if (!is_string($operation) || $operation === '') {
+        if ($operation === '') {
             throw new InvalidInputException('Missing operation.');
         }
 
