@@ -132,7 +132,7 @@ final class NameVariantResolver implements NameVariantResolverInterface
                 $value->value,
                 $value->language ?? '',
                 $value->script ?? '',
-                $value->type?->value ?? '',
+                $value->type->value ?? '',
             ]);
             if (isset($seen[$key])) {
                 continue;
