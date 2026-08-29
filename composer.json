@@ -1,0 +1,63 @@
+{
+  "name": "mytree/name-processing",
+  "description": "Standalone, deterministic name normalization, transliteration, folding and variant resolution for MyTree.",
+  "type": "library",
+  "keywords": [
+    "genealogy",
+    "names",
+    "normalization",
+    "transliteration",
+    "mytree"
+  ],
+  "homepage": "https://github.com/mytree-project/name-processing",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "saulgajda",
+      "homepage": "https://github.com/mytree-project",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/mytree-project/name-processing/issues",
+    "source": "https://github.com/mytree-project/name-processing"
+  },
+  "require": {
+    "php": "^8.2",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.75",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^11.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyTree\\NameProcessing\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MyTree\\NameProcessing\\Tests\\": "tests/"
+    }
+  },
+  "bin": [
+    "bin/mytree-name"
+  ],
+  "scripts": {
+    "test": "phpunit",
+    "analyse": "phpstan analyse --no-progress",
+    "format": "php-cs-fixer fix",
+    "format:check": "php-cs-fixer fix --dry-run --diff",
+    "qa": [
+      "@format:check",
+      "@analyse",
+      "@test"
+    ]
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

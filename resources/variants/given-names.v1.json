@@ -1,0 +1,35 @@
+{
+  "schema": "mytree.name-variants.v1",
+  "id": "given-names.v1",
+  "version": "1.0.0",
+  "status": "mvp_seed_demonstration",
+  "groups": [
+    {
+      "id": "joseph",
+      "variants": [
+        {"value": "Józef", "language": "pl", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Иосиф", "language": "ru", "script": "Cyrl", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Iosif", "language": "ru", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Joseph", "language": "de", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Josef", "language": "de", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}}
+      ]
+    },
+    {
+      "id": "john",
+      "variants": [
+        {"value": "Jan", "language": "pl", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Иван", "language": "ru", "script": "Cyrl", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Ivan", "language": "ru", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Johann", "language": "de", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Johannes", "language": "la", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}}
+      ]
+    },
+    {
+      "id": "anna",
+      "variants": [
+        {"value": "Anna", "language": "pl", "script": "Latn", "type": "given_name", "metadata": {"status": "seed"}},
+        {"value": "Анна", "language": "ru", "script": "Cyrl", "type": "given_name", "metadata": {"status": "seed"}}
+      ]
+    }
+  ]
+}

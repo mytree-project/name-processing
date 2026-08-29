@@ -1,0 +1,11 @@
+{
+  "schema": "mytree.name-processing-profile.v1",
+  "id": "cyrillic-latin",
+  "version": "1.0.0",
+  "operation": "transliterate",
+  "config": {
+    "icu_id": "Cyrillic-Latin",
+    "output_script": "Latn",
+    "normalize_output": "NFC"
+  }
+}
