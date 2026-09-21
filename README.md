@@ -15,6 +15,13 @@ The package keeps distinct operations separate instead of hiding them behind one
 
 Morphological analysis is intentionally outside the current scope.
 
+The package is intentionally **name-focused**. Its `place_name` / `other` input hints and generic processing primitives do not make it a general multilingual terminology translator. For example, deterministic lexical translation such as `Arbeiter → robotnik` for an occupation is outside the currently implemented package responsibility unless a future design explicitly broadens the boundary.
+
+Consumers may invoke name processing before any MyTree Engine run. Valid consumers include Source Acquisition, application Search, Engine integrations and standalone tools. The consuming layer decides whether a processor result is transient comparison/search data or is explicitly accepted into MyTree Acquisition state.
+
+An accepted processor-produced transliteration or name variant may be persisted by the consuming application as a linked linguistic representation only with explicit relation/origin/provenance and normal Claim revision/history semantics. Merely running `normalize`, `fold`, `transliterate` or `variants` does not mutate Source/Mention/Claim data. Technical normalization/folding used only for matching should normally remain rebuildable derived data.
+
+
 Name-processing output is **derived data**. Consumers must preserve the original source spelling separately and must not replace historical/source values with normalized, transliterated, folded, or variant forms.
 
 ## Requirements
@@ -196,9 +203,11 @@ Tests are split into unit and integration suites under `tests/Unit` and `tests/I
 
 See [docs/JSON_CONTRACT.md](docs/JSON_CONTRACT.md). Incompatible serialized contract changes require a new schema identifier.
 
-## Future Laravel integration
+## Laravel / MyTree integration
 
-A future Laravel integration should remain a thin adapter responsible for container bindings, configuration, persistence of derived features, and integration with MyTree Engine runs.
+Laravel or other MyTree integrations should remain thin adapters responsible for container bindings, configuration, and translating this package's typed processing results into the consuming application's use cases.
+
+The package may be used during Source Acquisition, Search or Engine processing. Persistence and acceptance semantics belong to the consuming application: this library does not decide that a generated value is Source truth or silently write a linguistic representation into a Claim.
 
 The standalone package must remain unaware of Eloquent, `Mention`, `Claim`, queues, Filament, or Laravel configuration classes.
 
