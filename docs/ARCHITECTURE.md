@@ -33,7 +33,9 @@ Each operation returns a `ProcessingResult`, but the underlying service contract
 
 ## Framework boundary
 
-Reusable code has no Laravel dependency. A future Laravel package should bind the public contracts and persist derived outputs without moving framework concerns into this package.
+Reusable code has no Laravel dependency. Laravel/MyTree adapters may bind the public contracts for Source Acquisition, Search, Engine or other application use cases without moving framework concerns into this package.
+
+The package does not own the consuming application's decision to persist a processor result. In particular, Acquisition may explicitly accept a processor-produced transliteration/name variant as a linked linguistic representation with provenance, while Search may use normalization/folding only as rebuildable comparison data.
 
 ## Resource adapters
 
@@ -49,9 +51,14 @@ Processing algorithms do not read clocks, randomness, global configuration, or n
 
 Normalization, transliteration, folding, and variants are derived representations. They must not overwrite the original spelling acquired from a historical document or external provider.
 
+The package is currently name-focused. It does not define a generic lexical translation/dictionary contract for occupations, social-position terms or arbitrary Source fields. Broadening that responsibility requires a separate explicit design.
+
+
 ## Persistence
 
-This package does not persist MyTree `Mention`, `Claim`, or derived features. Persistence belongs to the consuming application. `ProcessingResult` carries profile and implementation metadata needed by a future persistence adapter.
+This package does not persist MyTree `Mention`, `Claim`, linked linguistic representations or Search projections. Persistence belongs to the consuming application. `ProcessingResult` carries profile and implementation metadata needed by a persistence adapter to retain processor provenance when a result is explicitly accepted.
+
+Calling a processing operation is never itself an Acquisition mutation. Technical normalize/fold output used only for comparison should remain rebuildable derived data rather than being silently promoted into Claim semantic state.
 
 ## Morphology
 
