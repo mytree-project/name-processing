@@ -17,9 +17,11 @@ Morphological analysis is intentionally outside the current scope.
 
 The package is intentionally **name-focused**. Its `place_name` / `other` input hints and generic processing primitives do not make it a general multilingual terminology translator. For example, deterministic lexical translation such as `Arbeiter → robotnik` for an occupation is outside the currently implemented package responsibility unless a future design explicitly broadens the boundary.
 
-Consumers may invoke name processing before any MyTree Engine run. Valid consumers include Source Acquisition, application Search, Engine integrations and standalone tools. The consuming layer decides whether a processor result is transient comparison/search data or is explicitly accepted into MyTree Acquisition state.
+Consumers may invoke name processing before any MyTree Engine run. Valid consumers include Source Acquisition assistance, application Search, Engine integrations and standalone tools.
 
-An accepted processor-produced transliteration or name variant may be persisted by the consuming application as a linked linguistic representation only with explicit relation/origin/provenance and normal Claim revision/history semantics. Merely running `normalize`, `fold`, `transliterate` or `variants` does not mutate Source/Mention/Claim data. Technical normalization/folding used only for matching should normally remain rebuildable derived data.
+Every `ProcessingResult` produced by this package is derived processing output. It must not be written into MyTree `Source`, `Mention`, `Claim` or `ClaimRevision` merely because a user accepts it as useful. If the consuming application persists a transliteration, candidate variant or other processor result, it belongs to a separate derived representation/context with lineage to the immutable source input and processor/profile/dataset versions.
+
+A historical Source may independently contain two linguistic forms such as `Peter (Piotr)`. Recording both forms as source evidence is a Source Acquisition responsibility based on the document itself; it is not promotion of a `name-processing` result into source truth. Merely running `normalize`, `fold`, `transliterate` or `variants` never mutates Source/Mention/Claim data. Technical normalization/folding used only for matching should normally remain rebuildable derived data.
 
 
 Name-processing output is **derived data**. Consumers must preserve the original source spelling separately and must not replace historical/source values with normalized, transliterated, folded, or variant forms.
@@ -207,7 +209,7 @@ See [docs/JSON_CONTRACT.md](docs/JSON_CONTRACT.md). Incompatible serialized cont
 
 Laravel or other MyTree integrations should remain thin adapters responsible for container bindings, configuration, and translating this package's typed processing results into the consuming application's use cases.
 
-The package may be used during Source Acquisition, Search or Engine processing. Persistence and acceptance semantics belong to the consuming application: this library does not decide that a generated value is Source truth or silently write a linguistic representation into a Claim.
+The package may be used during Source Acquisition assistance, Search or Engine processing. Persistence semantics belong to the consuming application, but the architectural boundary is strict: package-generated values remain derived context and do not become Source/Claim truth. If the document itself contains an alternative spelling or language form, Source Acquisition records that direct observation independently from any processor output.
 
 The standalone package must remain unaware of Eloquent, `Mention`, `Claim`, queues, Filament, or Laravel configuration classes.
 
