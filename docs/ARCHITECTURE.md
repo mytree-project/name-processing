@@ -35,7 +35,9 @@ Each operation returns a `ProcessingResult`, but the underlying service contract
 
 Reusable code has no Laravel dependency. Laravel/MyTree adapters may bind the public contracts for Source Acquisition, Search, Engine or other application use cases without moving framework concerns into this package.
 
-The package does not own the consuming application's decision to persist a processor result. In particular, Acquisition may explicitly accept a processor-produced transliteration/name variant as a linked linguistic representation with provenance, while Search may use normalization/folding only as rebuildable comparison data.
+The package does not own the consuming application's persistence model. All processor results remain derived data: Source Acquisition may display or use them as assistance, but must not persist them into `Source`, `Mention`, `Claim` or `ClaimRevision` merely because they were accepted as useful. Search may use normalization/folding/transliteration/variants as rebuildable comparison data, and a future derived-representation store may retain them with lineage to immutable source inputs.
+
+If the acquired historical Source itself contains more than one linguistic form, recording those forms as direct source evidence is handled by Source Acquisition independently from this package.
 
 ## Resource adapters
 
@@ -56,9 +58,9 @@ The package is currently name-focused. It does not define a generic lexical tran
 
 ## Persistence
 
-This package does not persist MyTree `Mention`, `Claim`, linked linguistic representations or Search projections. Persistence belongs to the consuming application. `ProcessingResult` carries profile and implementation metadata needed by a persistence adapter to retain processor provenance when a result is explicitly accepted.
+This package does not persist MyTree `Mention`, `Claim`, source-supplied linguistic representations, derived-representation context or Search projections. Persistence belongs to the consuming application. `ProcessingResult` carries profile and implementation metadata so a derived consumer can retain processor provenance and reproducible lineage where needed.
 
-Calling a processing operation is never itself an Acquisition mutation. Technical normalize/fold output used only for comparison should remain rebuildable derived data rather than being silently promoted into Claim semantic state.
+Calling a processing operation is never itself an Acquisition mutation. Normalize/fold/transliterate/variant output must not be silently promoted into Claim semantic state. A source-supplied alternative form belongs to Claim history only when the historical Source itself explicitly contains that form; the processor neither establishes nor changes that fact.
 
 ## Morphology
 
