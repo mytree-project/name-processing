@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MyTree\NameProcessing\Application;
 
+use MyTree\NameProcessing\Contracts\VariantRepositoryInterface;
 use MyTree\NameProcessing\Folding\IcuNameFolder;
 use MyTree\NameProcessing\Normalization\IcuNameNormalizer;
 use MyTree\NameProcessing\Profile\JsonProfileRepository;
@@ -13,10 +14,12 @@ use MyTree\NameProcessing\Variants\NameVariantResolver;
 
 final class DefaultRegistryFactory
 {
-    public static function create(string $packageRoot): OperationRegistry
-    {
-        $profiles = new JsonProfileRepository($packageRoot . '/resources/profiles');
-        $variants = new JsonVariantRepository($packageRoot . '/resources/variants');
+    public static function create(
+        string $packageRoot,
+        ?VariantRepositoryInterface $variantRepository = null,
+    ): OperationRegistry {
+        $profiles = new JsonProfileRepository($packageRoot.'/resources/profiles');
+        $variants = $variantRepository ?? new JsonVariantRepository($packageRoot.'/resources/variants');
 
         $normalizer = new IcuNameNormalizer($profiles);
         $transliterator = new IcuTransliterator($profiles);
