@@ -151,7 +151,10 @@ final class VariantDatasetJsonCodec
         return $values;
     }
 
-    /** @param array<mixed> $value */
+    /**
+     * @param array<mixed> $value
+     * @return array<mixed>
+     */
     private function normalizeNestedArray(array $value): array
     {
         if (array_is_list($value)) {
