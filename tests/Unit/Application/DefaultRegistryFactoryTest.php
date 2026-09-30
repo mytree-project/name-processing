@@ -18,8 +18,7 @@ final class DefaultRegistryFactoryTest extends TestCase
 {
     public function test_accepts_application_supplied_variant_repository(): void
     {
-        $variants = new class implements VariantRepositoryInterface
-        {
+        $variants = new class () implements VariantRepositoryInterface {
             public function load(string $datasetId): VariantDataset
             {
                 return new VariantDataset(
